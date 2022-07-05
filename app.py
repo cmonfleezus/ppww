@@ -27,7 +27,7 @@ app.config["MAX_IMAGE_FILESIZE"] = 8 * 1024 * 1024
 
 DB_LINK = 'sqlite:///users.db'
 # bazy danych
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 login_manager = LoginManager()
