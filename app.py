@@ -12,6 +12,7 @@ from sqlalchemy.orm import relationship
 from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user
 import os
 from werkzeug.utils import secure_filename
+from sqlalchemy import create_engine
 
 
 categories = ["Ciasta", "Torty", "Ciasteczka", "Pączki"]
@@ -27,14 +28,15 @@ app.config["IMAGE_UPLOADS"] = os.path.abspath('static/img/uploads')
 app.config["ALLOWED_IMAGE_EXTENSIONS"] = ["PNG", "JPG", "JPEG", "GIF"]
 app.config["MAX_IMAGE_FILESIZE"] = 8 * 1024 * 1024
 
-DB_LINK = os.getenv("DATABASE_URL")
-DB_LINK = DB_LINK.replace("postgres://", "postgresql://", 1)
-print(DB_LINK)
-print(DB_LINK)
-print(DB_LINK)
+# DB_LINK = os.getenv("DATABASE_URL")
+# DB_LINK = DB_LINK.replace("postgres://", "postgresql://", 1)
+# print(DB_LINK)
+# print(DB_LINK)
+# print(DB_LINK)
 
 # bazy danych
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://dgnfghtdhfbigw:5c5caca80ccd120b4827add99f2ace5d211f7d6d86c9bd228e1ce0e8877d3522@ec2-34-239-241-121.compute-1.amazonaws.com:5432/d9gec4hudu6onk'
+engine = create_engine('postgresql://dgnfghtdhfbigw:5c5caca80ccd120b4827add99f2ace5d211f7d6d86c9bd228e1ce0e8877d3522@ec2-34-239-241-121.compute-1.amazonaws.com:5432/d9gec4hudu6onk')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 login_manager = LoginManager()
