@@ -25,9 +25,10 @@ app.config["IMAGE_UPLOADS"] = os.path.abspath('static/img/uploads')
 app.config["ALLOWED_IMAGE_EXTENSIONS"] = ["PNG", "JPG", "JPEG", "GIF"]
 app.config["MAX_IMAGE_FILESIZE"] = 8 * 1024 * 1024
 
-DB_LINK = 'sqlite:///users.db'
+DB_LINK = os.environ.get("DATABASE_URL")
+
 # bazy danych
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL",  "sqlite:///users.db")
+app.config['SQLALCHEMY_DATABASE_URI'] = DB_LINK
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 login_manager = LoginManager()
