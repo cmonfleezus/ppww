@@ -15,6 +15,7 @@ from werkzeug.utils import secure_filename
 from sqlalchemy import create_engine
 
 
+
 categories = ["Ciasta", "Torty", "Ciasteczka", "Pączki"]
 
 secret_string = str(os.environ.get("SECRET_KEY"))
