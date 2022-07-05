@@ -25,11 +25,11 @@ app.config["IMAGE_UPLOADS"] = os.path.abspath('static/img/uploads')
 app.config["ALLOWED_IMAGE_EXTENSIONS"] = ["PNG", "JPG", "JPEG", "GIF"]
 app.config["MAX_IMAGE_FILESIZE"] = 8 * 1024 * 1024
 
-# DB_LINK = os.environ.get("DATABASE_URL")
+DB_LINK = os.getenv("DATABASE_URL")
+DB_LINK = DB_LINK.replace("postgres://", "postgresql://", 1)
 
 # bazy danych
-# app.config['SQLALCHEMY_DATABASE_URI'] = DB_LINK
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL?sslmode=require').replace('postgres://', 'postgresql://')
+app.config['SQLALCHEMY_DATABASE_URI'] = DB_LINK
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 login_manager = LoginManager()
