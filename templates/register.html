@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}Rejestracja - Popowiczanka{% endblock title %}
+
+{% import "bootstrap/wtf.html" as wtf %}
+{% block style %}
+<style type="text/css">
+    body {
+        background-color: #F0EBE3;
+    }
+    .card-body .btn {
+        color: #fff !important;
+        background-color: #5a131f !important;
+        border-color: #5a131f !important;
+        border-radius: 50px !important;
+        margin-top: 10px;
+    }
+    .card-body .btn:hover {
+        color: #5a131f !important;
+        background-color: #ffffff !important;
+        border-color: #ffffff !important;
+    }
+</style>
+{% endblock style %}
+{% block main %}
+<div class="container" style="padding-bottom: 80px;">
+    <div class="row p-lg-5 py-5 p-2">
+        <div class="col d-flex justify-content-center">
+            <div class="card w-m-50 shadow p-lg-5 py-3">
+                <div class="card-body">
+                    <h1>Zarejestruj się</h1>
+                    <hr>
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            {% for msg in messages %}
+                                <p style="color: red;">{{msg}}</p>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+                    {{ wtf.quick_form(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock main %}
+
+
+
+
+
+
+
+

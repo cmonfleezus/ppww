@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+
+{% block main %}
+
+
+<div style="padding-top: 80px;">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for msg in messages %}
+                <p>{{msg}}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</div>
+
+
+<div class="container" style="padding-left: 60px;">
+    <div class="row">
+        <div class="col">
+            <h1>Dodaj produkt</h1>
+            <hr>
+            <form action="/upload-image" method="POST" enctype="multipart/form-data">
+
+
+                <div class="form-group" style="padding:15px;">
+                    <label>Wybierz obraz</label>
+                    <div class="custom-file">
+                        <input oninput="filesize(this);" type="file" class="custom-file-input" name="image" id="image">
+                    </div>
+                </div>
+                <div style="padding:15px;">
+                    <button type="submit" class="btn btn-primary">Wgraj obraz</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock main %}
+
+
+{% block scripts %}
+<script>
+    function filesize(elem){
+        document.cookie = `filesize=${elem.files[0].size}`;
+    }
+</script>
+{% endblock %}

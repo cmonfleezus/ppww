@@ -1,0 +1,229 @@
+{% extends "base.html" %}
+
+{% block style %}
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+    .marketing .col-lg-4 {
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    .marketing h2 {
+      font-weight: 400;
+    }
+
+    .marketing .col-lg-4 p {
+      margin-right: .75rem;
+      margin-left: .75rem;
+    }
+
+    .carousel {
+      margin-bottom: 4rem;
+    }
+    .carousel-caption {
+      bottom: 3rem;
+      z-index: 10;
+    }
+
+    .carousel-item {
+      height: 32rem;
+    }
+    .carousel-item > img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      min-width: 100%;
+      height: 32rem;
+    }
+    @media (min-width: 40em) {
+      .carousel-caption p {
+        margin-bottom: 1.25rem;
+        font-size: 1.25rem;
+        line-height: 1.4;
+      }
+
+    </style>
+{% endblock style %}
+
+{% block title %}Popowiczanka - strona główna{% endblock title %}
+
+{% block main %}
+
+
+<!-- Section-->
+
+
+<div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img style="object-fit: cover;" src="static/img/tlocarouselcake.png" width="100%" height="100%" aria-hidden="true">
+        <div class="container">
+          <div class="carousel-caption text-start">
+              <div class="container">
+                  <div class="row">
+                      <div class="col col-7 col-sm-6 pb-lg-5">
+                          <h1 style="color: #5a131f; text-align:right; margin-right: 15px;">Poznaj nasze produkty</h1>
+                        <p style="color: #5a131f; text-align:right; margin-right: 15px;">W naszej ofercie znajdziesz pączki itp cukier Weź telefon taty i przelej nam 100 zloty</p>
+
+                        <p style="text-align:right; margin-right: 15px;"><a class="btn btn-primary btn-caro btn-lg" style="background-color: #5a131f; color: #f5bfc1; white-space: nowrap;" href="#">Zobacz więcej</a></p>
+
+                      </div>
+                  </div>
+              </div>
+
+
+
+
+
+
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img style="object-fit: cover; height: 718px;" src="static/img/tlocarouselcake.png" aria-hidden="true">
+        <div class="container">
+          <div class="carousel-caption">
+            <h1 style="color: #5a131f;">Przykładowy nagłówek</h1>
+            <p style="color: #5a131f;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip e</p>
+            <p><a class="btn btn-caro btn-lg btn-primary" href="#">Learn more</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img style="object-fit: cover; height: 718px;" src="static/img/paczek-bialy.png" aria-hidden="true">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+
+                    <div class="carousel-caption text-end" style="margin-bottom: 100px;">
+                        <h1 style="color: #5a131f;">Lorem ipsum dolor sit amet</h1>
+                        <p style="color: #5a131f;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim venia</p>
+                        <p><a class="btn btn-lg btn-caro btn-primary" href="#">Browse gallery</a></p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+
+<!-- FLASH -->
+<div>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for msg in messages %}
+                <p>{{msg}}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</div>
+
+<div class="container marketing my-5">
+
+    <div class="row p-4">
+      <div class="col-lg-4 p-0">
+          <i class="fa-solid fa-cake-candles fa-8x pb-5 fa-beat" style="--fa-animation-duration: 2s; --fa-beat-scale: 1.1; color: #FCC5C0;"></i>
+<!--          <img src="static/img/uploads/279446812_347094670630905_8096064850914078435_n.jpg" class="rounded-circle" width="140" height="140" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">-->
+
+<!--        <h2>Poznaj nasze produkty!</h2>-->
+<!--        <p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>-->
+        <p><a class="btn btn-lg btn-headd" style="background-color: #5a131f; color:white;" href="{{ url_for('products', category='all') }}">Nasze produkty &raquo;</a></p>
+      </div><!-- /.col-lg-4 -->
+      <div class="col-lg-4 p-0">
+        <i class="fa-solid fa-street-view fa-8x pb-5 fa-beat" style="--fa-animation-duration: 2s; --fa-beat-scale: 1.1; color: #C689C6;"></i>
+<!--        <img src="/static/img/uploads/279446812_347094670630905_8096064850914078435_n.jpg" class="rounded-circle" width="140" height="140" aria-label="asd" preserveAspectRatio="xMidYMid slice" focusable="false">-->
+<!--        <h2>Torty na zamówienie</h2>-->
+<!--        <p>Another exciting bit of representative placeholder content. This time, we've moved on to the second column.</p>-->
+        <p><a class="btn btn-lg btn-headd" style="background-color: #5a131f; color:white;" href="{{ url_for('lokalizacje') }}">Nasze punkty &raquo;</a></p>
+      </div><!-- /.col-lg-4 -->
+      <div class="col-lg-4 p-0">
+        <i class="fa-solid fa-phone fa-8x pb-5 fa-beat" style="--fa-animation-duration: 2s; --fa-beat-scale: 1.1; color: #937DC2;"></i>
+<!--        <img src="/static/img/uploads/286837556_532820498325511_2040714299936707075_n.jpg" class="rounded-circle" width="140" height="140" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">-->
+<!--        <h2>Nasze punkty</h2>-->
+<!--        <p>And lastly this, the third column of representative placeholder content.</p>-->
+        <p><a class="btn btn-lg btn-headd" style="background-color: #5a131f; color:white;" href="{{ url_for('kontakt') }}">Skontaktuj się z nami! &raquo;</a></p>
+      </div><!-- /.col-lg-4 -->
+    </div><!-- /.row -->
+
+</div>
+
+
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            {% for post in posts %}
+            <div class="col mb-5">
+                <div class="card h-100">
+                    <!-- Product image-->
+                    <img class="card-img-top" src="https://d2b65caj9ioaip.cloudfront.net/wp-content/uploads/2018/12/IMG_6616-001-1200x900.jpg" alt="..." />
+                    <!-- Product details-->
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <!-- Product name-->
+                            <h5 class="fw-bolder">{{  post['title']  }}</h5>
+                            <!-- Product price-->
+                            $40.00 - $80.00
+                        </div>
+                    </div>
+                    <!-- Product actions-->
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{{ url_for('item', post_id=post['id']) }}">View options</a></div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% for post in posts %}
+            <div class="col mb-5">
+                <div class="card h-100">
+                    <!-- Product image-->
+                    <img class="card-img-top" src="https://d2b65caj9ioaip.cloudfront.net/wp-content/uploads/2018/12/IMG_6616-001-1200x900.jpg" alt="..." />
+                    <!-- Product details-->
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <!-- Product name-->
+                            <h5 class="fw-bolder">{{  post['title']  }}</h5>
+                            <!-- Product price-->
+                            $40.00 - $80.00
+                        </div>
+                    </div>
+                    <!-- Product actions-->
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{{ url_for('item', post_id=post['id']) }}">View options</a></div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+
+
+{% endblock main %}

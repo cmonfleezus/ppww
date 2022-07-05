@@ -1,0 +1,231 @@
+{% extends "base.html" %}
+
+{% block style %}
+<style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+
+</style>
+{% endblock style %}
+
+
+{% block title %}Panel admina - Popowiczanka{% endblock title %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block main %}
+
+{% import "bootstrap/wtf.html" as wtf %}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            {% for msg in messages %}
+            <p>{{msg}}</p>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+        </div>
+    </div>
+</div>
+
+<div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark"
+     style="position: absolute !important;width: 280px; height: 100% !important;">
+    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+        <svg class="bi me-2" width="40" height="32">
+            <use xlink:href="#bootstrap"/>
+        </svg>
+        <span class="fs-4">Sidebar</span>
+    </a>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item">
+            <a href="{{ url_for('index') }}" class="nav-link active" aria-current="page">
+                <svg class="bi me-2" width="16" height="16">
+                    <use xlink:href="#home"/>
+                </svg>
+                Home
+            </a>
+        </li>
+        <li>
+            <a href="{{ url_for('admin_dashboard') }}" class="nav-link text-white">
+                <svg class="bi me-2" width="16" height="16">
+                    <use xlink:href="#speedometer2"/>
+                </svg>
+                Dashboard
+            </a>
+        </li>
+        <li>
+            <a href="{{ url_for('add_new_product') }}" class="nav-link text-white">
+                <svg class="bi me-2" width="16" height="16">
+                    <use xlink:href="#grid"/>
+                </svg>
+                Dodaj nowy produkt
+            </a>
+        </li>
+        <li>
+            <a href="{{ url_for('products', category='all') }}" class="nav-link text-white">
+                <svg class="bi me-2" width="16" height="16">
+                    <use xlink:href="#people-circle"/>
+                </svg>
+                Produkty
+            </a>
+        </li>
+    </ul>
+
+</div>
+
+
+<!-- GŁÓWNY CONTAINER:-->
+
+<div class="container pt-5" style="padding-left: 280px; min-height:800px;">
+
+    <div class="container">
+        <div class="accordion" id="accordionExample">
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Wiadomości od użytkowników
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                     data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th scope="col">username</th>
+                                <th scope="col">email</th>
+                                <th scope="col">numer telefonu</th>
+                                <th scope="col">data wiadomości</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for message in all_messages %}
+                                <tr>
+                                    <th scope="row">{{ message.username }}</th>
+                                    <td>{{ message.email }}</td>
+                                    <td>{{ message.phone }}</td>
+                                    <td>{{ message.date }}</td>
+                                </tr>
+                                <tr>
+                                    <td>{{ message.message }}</td>
+                                </tr>
+                            {% endfor %}
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Zarejestrowani użytkownicy
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                     data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th scope="col">id</th>
+                                <th scope="col">username</th>
+                                <th scope="col">surname</th>
+                                <th scope="col">birthday</th>
+                                <th scope="col">email</th>
+                                <th scope="col">phone</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for user in all_users %}
+                            <tr>
+                                <th scope="row">{{ user.id }}</th>
+                                <td>{{ user.username }}</td>
+                                <td>{{ user.surname }}</td>
+                                <td>{{ user.birthdate }}</td>
+                                <td>{{ user.email }}</td>
+                                <td>{{ user.phone }}</td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Koszyki zarejestrowanych użytkowników
+                    </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                     data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        {% for x in dict_of_users %}
+                            {% if dict_of_users[x] %}
+                        <hr>
+                        <hr>
+                                <h6>ID użytkownika: {{ x }}</h6>
+                                {% for user in all_users %}
+                                    {% if x == user.id %}
+                                    <p>Imię: <strong>{{ user.username }}</strong> Nazwisko: <strong>{{ user.surname }}</strong> e-mail:<strong>{{ user.email }}</strong> telefon: <strong>{{ user.phone }}</strong></p>
+                                    {% endif %}
+                                {% endfor %}
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">ID produktu</th>
+                                        <th scope="col">Nazwa produktu</th>
+                                        <th scope="col">Kategoria produktu</th>
+                                        <th scope="col">Ilość sztuk w koszyku</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for y in dict_of_users[x] %}
+                                        <tr>
+                                            <th scope="row">{{ y }}</th>
+                                            {% for product in all_products %}
+                                                {% if product.id == y %}
+                                                    <td>{{ product.product_name }}</td>
+                                                    <td>{{ product.category }}</td>
+                                                {% endif %}
+                                            {% endfor %}
+                                            <td>{{ dict_of_users[x][y] }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                                {% endif %}
+                            {% endfor %}
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock main %}

@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block title %}Kontakt - Popowiczanka{% endblock title %}
+
+{% block main %}
+
+<div class="container">
+    <div class="row" style="padding: 100px; padding-bottom: 200px;">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+
+
+          <h6>Chcesz się z nami skontaktować? Wyślij wiadomość, a odpowiemy tak szybko, jak to możliwe!</h6>
+        <hr>
+          <form action="{{ url_for('kontakt') }}" method="post" name="sentMessage" id="contactForm" novalidate="">
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label>Imię</label>
+                {% if current_user.get_id() %}
+                <input type="text" class="form-control" value="{{ current_user.username }}" name="name" readonly>
+                {% else %}
+                <input type="text" class="form-control" placeholder="Imię" name="name" required="" data-validation-required-message="Please enter your name.">
+                {% endif %}
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label>Adres e-mail</label>
+                {% if current_user.get_id() %}
+                <input type="email" class="form-control" value="{{ current_user.email }}" name="email" readonly>
+                {% else %}
+                <input type="email" class="form-control" placeholder="Adres e-mail" name="email" required="" data-validation-required-message="Please enter your email address.">
+                {% endif %}
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            {% if current_user.get_id() %}
+            <div class="control-group invisible" style="position: absolute;">
+              <div class="form-group col-xs-12 floating-label-form-group controls">
+                <label>Numer telefonu</label>
+                <input type="tel" class="form-control" value="{{ current_user.phone }}" name="phone">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            {% else %}
+            <div class="control-group">
+              <div class="form-group col-xs-12 floating-label-form-group controls">
+                <label>Numer telefonu</label>
+                <input type="tel" class="form-control" placeholder="Numer telefonu" name="phone" required="" data-validation-required-message="Please enter your phone number.">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            {% endif %}
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label>Treść wiadomości</label>
+                <textarea rows="5" class="form-control" placeholder="Treść wiadomości" name="message" required="" data-validation-required-message="Please enter a message."></textarea>
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+            <br>
+            <div id="success"></div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-caro" id="sendMessageButton">Wyślij</button>
+            </div>
+          </form>
+
+
+
+      </div>
+    </div>
+  </div>
+
+{% endblock main %}

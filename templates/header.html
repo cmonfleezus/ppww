@@ -1,0 +1,79 @@
+
+<nav id="navbar_top" class="navbar navbar-expand-lg navbar-light bg-light shadow-sm" style="z-index: 1000; padding:0;">
+    <div class="container px-4 px-lg-5">
+        <a class="navbar-brand" style="padding:0;" href="{{  url_for('index')  }}">
+            <img id="nav-img-logo" src="/static/img/popowiczankakolor-kopia.png" height="110" alt="">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
+                class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                <li class="nav-item dropdown">
+                </li>
+            </ul>
+
+            <ul class="d-flex navbar-nav me-3 mb-2 mb-lg-0">
+            <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown2" href="#" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">Produkty</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                        <li><a class="dropdown-item" href="{{ url_for('products', category='all') }}">Wszystkie produkty</a></li>
+                        <li>
+                            <hr class="dropdown-divider"/>
+                        </li>
+                        <li><a class="dropdown-item" href="{{ url_for('products', category='Ciasta') }}">Ciasta</a></li>
+                        <li><a class="dropdown-item" href="{{ url_for('products', category='Torty') }}">Torty</a></li>
+                        <li><a class="dropdown-item" href="{{ url_for('products', category='Ciasteczka') }}">Ciasteczka</a></li>
+                        <li><a class="dropdown-item" href="{{ url_for('products', category='Pączki') }}">Pączki</a></li>
+                    </ul>
+                </li>
+
+
+            <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">Menu</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="{{ url_for('products', category='all') }}">Produkty</a></li>
+                        <li>
+                            <hr class="dropdown-divider"/>
+                        </li>
+                        <li><a class="dropdown-item" href="{{ url_for('lokalizacje') }}">Nasze lokalizacje</a></li>
+                        <li><a class="dropdown-item" href="{{ url_for('roboty_drogowe') }}">O nas</a></li>
+                        <li><a class="dropdown-item" href="{{ url_for('kontakt') }}">Kontakt</a></li>
+                    </ul>
+                </li>
+                {% if current_user.get_id() %}
+                <li class="nav-item"><a class="nav-link" href="{{  url_for('logout')  }}">Wyloguj</a></li>
+                {% else %}
+                <li class="nav-item"><a class="nav-link" href="{{  url_for('login')  }}">Zaloguj się</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{  url_for('register')  }}">Zarejestruj się</a></li>
+                {% endif %}
+            </ul>
+            {% if current_user.get_id() %}
+                <form class="d-flex" style="margin-right: 5px; margin-bottom: 1px;">
+                    <a class="btn btn-headd btn-outline-dark" href="{{  url_for('user')  }}"><img src="/static/img/icons8-teenager-female-96.png" width="25px"> {{ current_user.username }}</a>
+                </form>
+            {% endif %}
+            <form class="d-flex">
+                <a class="btn btn-outline-dark btn-headf" href="{{  url_for('koszyk')  }}" style="margin-bottom:1px;">
+                    <img src="/static/img/icons8-shopping-cart.gif" width="25px">
+                    {% if not current_user.get_id() %}
+                        {% if 'koszyk' in session %}
+                            <span class="badge bg-dark text-white ms-1 rounded-pill">{{ session['koszyk']|length }}</span>
+                        {% else %}
+                            <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                        {% endif %}
+                    {% else %}
+                        {% if current_user.cart_count == None %}
+                            <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                        {% else %}
+                            <span class="badge bg-dark text-white ms-1 rounded-pill">{{ current_user.cart_count }}</span>
+                        {% endif %}
+                    {% endif %}
+                </a>
+            </form>
+        </div>
+    </div>
+</nav>
+

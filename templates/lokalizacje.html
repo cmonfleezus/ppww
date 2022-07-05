@@ -1,0 +1,172 @@
+{% extends "base.html" %}
+
+{% block style %}
+
+<style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+      .b-example-divider {
+        height: 3rem;
+        background-color: rgba(0, 0, 0, .1);
+        border: solid rgba(0, 0, 0, .15);
+        border-width: 1px 0;
+        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+      }
+
+      .b-example-vr {
+        flex-shrink: 0;
+        width: 1.5rem;
+        height: 100vh;
+      }
+
+      .bi {
+        vertical-align: -.125em;
+        fill: currentColor;
+      }
+
+      .nav-scroller {
+        position: relative;
+        z-index: 2;
+        height: 2.75rem;
+        overflow-y: hidden;
+      }
+
+      .nav-scroller .nav {
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+        overflow-x: auto;
+        text-align: center;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+      }
+
+/*
+ * Custom translucent site header
+ */
+
+.site-header {
+  background-color: rgba(0, 0, 0, .85);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
+}
+.site-header a {
+  color: #8e8e8e;
+  transition: color .15s ease-in-out;
+}
+.site-header a:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+/*
+ * Dummy devices (replace them with your own or something else entirely!)
+ */
+
+.product-device {
+  position: absolute;
+  right: 10%;
+  bottom: -30%;
+  width: 300px;
+  height: 540px;
+  background-color: #333;
+  border-radius: 21px;
+  transform: rotate(30deg);
+}
+
+.product-device::before {
+  position: absolute;
+  top: 10%;
+  right: 10px;
+  bottom: 10%;
+  left: 10px;
+  content: "";
+  background-color: rgba(255, 255, 255, .1);
+  border-radius: 5px;
+}
+
+.product-device-2 {
+  top: -25%;
+  right: auto;
+  bottom: 0;
+  left: 5%;
+  background-color: #e5e5e5;
+}
+
+
+/*
+ * Extra utilities
+ */
+
+.flex-equal > * {
+  flex: 1;
+}
+@media (min-width: 768px) {
+  .flex-md-equal > * {
+    flex: 1;
+  }
+}
+    </style>
+
+{% endblock %}
+
+{% block title %}Nasze sklepy{% endblock %}
+
+{% block main %}
+
+
+
+<div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
+    <div class="bg-light me-md-3 pt-1 px-3 pt-md-3 px-md-5 text-center overflow-hidden">
+      <div class="my-3 p-1">
+        <h2 class="display-5">Lokalizacja 1</h2>
+        <p class="lead">Adres: miasto, ulica, kod</p>
+        <p>Godziny otwarcia:</p>
+        <p>Godziny otwarcia:</p>
+        <p>Godziny otwarcia:</p>
+      </div>
+        <img src="/static/img/uploads/108125125_3047521375295071_3027717497616530282_n.jpg" class="bg-dark shadow-sm mx-auto" style="object-fit: cover; width: 80%; height: 300px; border-radius: 21px 21px 0 0;">
+
+    </div>
+    <div class="me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d10199.113418332057!2d18.9229999!3d50.277397!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x948a5a88685fcf72!2sPopowiczanka%20Piekarnia%26Cukiernia!5e0!3m2!1spl!2spl!4v1656935050728!5m2!1spl!2spl" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+    </div>
+</div>
+
+
+<div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
+
+    <div class="me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d10199.113418332057!2d18.9229999!3d50.277397!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x948a5a88685fcf72!2sPopowiczanka%20Piekarnia%26Cukiernia!5e0!3m2!1spl!2spl!4v1656935050728!5m2!1spl!2spl" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+    </div>
+    <div class="bg-light me-md-3 pt-1 px-3 pt-md-3 px-md-5 text-center overflow-hidden">
+      <div class="my-3 p-1">
+        <h2 class="display-5">Lokalizacja 2</h2>
+        <p class="lead">Adres: miasto, ulica, kod</p>
+        <p>Godziny otwarcia:</p>
+        <p>Godziny otwarcia:</p>
+        <p>Godziny otwarcia:</p>
+      </div>
+        <img src="/static/img/uploads/147536948_3622291821151354_5736978845448347692_n.jpg" class="bg-dark shadow-sm mx-auto" style="object-fit: cover; width: 80%; height: 300px; border-radius: 21px 21px 0 0;">
+
+    </div>
+</div>
+
+{% endblock main %}
+
+

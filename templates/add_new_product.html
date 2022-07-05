@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+
+{% block style %}
+<style type="text/css">
+    body {
+        background-color: #F0EBE3;
+    }
+    .card-body .btn {
+        color: #fff !important;
+        background-color: #5a131f !important;
+        border-color: #5a131f !important;
+        border-radius: 50px !important;
+        margin-top: 10px;
+    }
+    .card-body .btn:hover {
+        color: #5a131f !important;
+        background-color: #ffffff !important;
+        border-color: #ffffff !important;
+    }
+</style>
+{% endblock style %}
+
+{% block main %}
+
+
+
+
+
+
+
+
+<div class="container" style="padding-bottom: 80px;">
+    <div class="row p-lg-5 py-5 p-2">
+        <div class="col d-flex justify-content-center">
+            <div class="card w-m-100 shadow p-lg-5 py-3">
+                <div class="card-body">
+
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            {% for msg in messages %}
+                                <p style="color: red;">{{msg}}</p>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+
+
+
+
+<div class="container" style="padding-left: 60px; padding-bottom: 80px;">
+    <div class="row">
+        <div class="col">
+            <h1 style="padding-right: 260px;">Dodaj produkt</h1>
+            <hr>
+            <form action="/add-new-product" method="POST" enctype="multipart/form-data">
+
+
+
+
+                <div class="control-group">
+                  <div class="form-group floating-label-form-group controls">
+                    <label>Kategoria</label>
+                        <select class="form-select" name="kategoria" aria-label="Default select example" data-validation-required-message="Dodaj kategorię!">
+                          <option selected>Dodaj kategorię</option>
+                            {% for x in categories %}
+                                <option value="{{ x.category_name }}">{{ x.category_name }}</option>
+                            {% endfor %}
+                        </select>
+                    <p class="help-block text-danger"></p>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <div class="form-group floating-label-form-group controls">
+                    <label>Nazwa produktu</label>
+                    <input type="text" class="form-control" placeholder="Nazwa produktu" name="nazwa" required="" data-validation-required-message="Dodaj nazwę produktu">
+                    <p class="help-block text-danger"></p>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <div class="form-group floating-label-form-group controls">
+                    <label for="opistext">Opis produktu</label>
+                      <textarea type="text" class="form-control" id="opistext" rows="4" placeholder="Opis produktu" name="opis"></textarea>
+                    <p class="help-block text-danger"></p>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <div class="form-group floating-label-form-group controls">
+                    <label>Cena (same cyfry, złotówki od groszy oddzielone kropką)</label>
+                    <input type="text" class="form-control" placeholder="##.##" name="cena">
+                    <p class="help-block text-danger"></p>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <div class="form-group floating-label-form-group controls">
+                    <label>Zniżka (same cyfry, złotówki od groszy oddzielone kropką)</label>
+                    <input type="text" class="form-control" placeholder="##.##" name="discount">
+                    <p class="help-block text-danger"></p>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <div class="form-group floating-label-form-group controls">
+                    <label>Aktywuj zniżkę</label>
+                        <select class="form-select" name="znizka">
+                          <option value="0" selected>Nie</option>
+                            <option value="1">Tak</option>
+                        </select>
+                    <p class="help-block text-danger"></p>
+                  </div>
+                </div>
+                <div class="form-group" style="padding:15px;">
+                    <label>Wybierz obraz (kształt kwadratu jest optymalny, inne foty będą lekko przycięte)</label>
+                    <div class="custom-file">
+                        <input oninput="filesize(this);" type="file" class="custom-file-input" name="image" id="image">
+                    </div>
+                </div>
+                <div style="padding:15px;">
+                    <button type="submit" class="btn btn-caro">Dodaj produkt</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+{% endblock main %}
+
+
+{% block scripts %}
+<script>
+    function filesize(elem){
+        document.cookie = `filesize=${elem.files[0].size}`;
+    }
+</script>
+{% endblock %}

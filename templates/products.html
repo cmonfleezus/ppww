@@ -1,0 +1,158 @@
+{% extends "base.html" %}
+
+{% block title %}Produkty - Popowiczanka{% endblock title %}
+
+{% block main %}
+
+
+<section style="background-color: #FFE6E6 !important;;">
+<div class="container px-lg-5 pb-2">
+    <div class="row">
+        <div class="col">
+            <h5 class="text-center" style="font-family: arial; padding-top: 15px;">Wybierz kategorię:</h5>
+        </div>
+    </div>
+    <div class="row px-lg-5 justify-content-center">
+
+        <div class="col col-3 col-md-2 text-center">
+            <div>
+                {% if category == "Ciasta" %}
+                    <a class="btn btn-lg btn-category pt-2 text-center btn-category-active active" href="{{ url_for('products', category='Ciasta') }}" style="width: 110px;">
+                {% else %}
+                    <a class="btn btn-lg btn-category pt-2 text-center" href="{{ url_for('products', category='Ciasta') }}" style="width: 110px;">
+                {% endif %}
+                        <img src="/static/img/pie.png" width="50px" style="position: relative; top: 8px;">
+                        <span style="position: relative; top: 5px;">Ciasta</span>
+                </a>
+            </div>
+        </div>
+        <div class="col col-3 col-md-2 text-center">
+            <div>
+                {% if category == "Torty" %}
+                <a class="btn btn-lg pt-2 text-center btn-category btn-category-active active" href="{{ url_for('products', category='Torty') }}" style="width: 110px;">
+                {% else %}
+                <a class="btn btn-lg pt-2 text-center btn-category" href="{{ url_for('products', category='Torty') }}" style="width: 110px;">
+                {% endif %}
+                    <img src="/static/img/cake.png" width="50px">
+                    <span style="position: relative; top: 5px;">Torty</span>
+                </a>
+            </div>
+        </div>
+        <div class="col col-3 col-md-2 text-center">
+            <div>
+                {% if category == "Ciasteczka" %}
+                <a class="btn btn-lg btn-category pt-2 text-center btn-category-active active" href="{{ url_for('products', category='Ciasteczka') }}" style="width: 110px;">
+                {% else %}
+                <a class="btn btn-lg btn-category pt-2 text-center" href="{{ url_for('products', category='Ciasteczka') }}" style="width: 110px;">
+                {% endif %}
+                    <img src="/static/img/cupcake.png" width="50px">
+                    <span style="position: relative; right: 10px; top: 5px;">Ciasteczka</span>
+                </a>
+            </div>
+        </div>
+        <div class="col col-3 col-md-2 text-center">
+            <div>
+                {% if category == "Pączki" %}
+                <a class="btn btn-lg btn-category pt-2 text-center btn-category-active active" href="{{ url_for('products', category='Pączki') }}" style="width: 110px;">
+                {% else %}
+                <a class="btn btn-lg btn-category pt-2 text-center" href="{{ url_for('products', category='Pączki') }}" style="width: 110px;">
+                {% endif %}
+                    <img src="/static/img/donut.png" width="50px">
+                    <span style="position: relative; top: 5px;">Pączki</span>
+                </a>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+</section>
+
+<div>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for msg in messages %}
+                <p>{{msg}}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</div>
+<!-- Section-->
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5" style="min-height: 600px;">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            {% if category == "all" %}
+                {% for product in all_products %}
+                <div class="col mb-5">
+                    <div class="card h-100" style="border-radius: 0 0 20px 20px !important;">
+                        <!-- Product image-->
+                        <div>
+                            <a href="{{ url_for('view_product', prod_id=product['id'], category=product['category']) }}"><img class="card-img-top img-fluid" src="{{ product['img_url'] }}" style="height: 250px; object-fit: cover;" /></a>
+                        </div>
+                        <!-- Product details-->
+                        <div class="card-body pt-3 pb-2">
+                            <div class="text-center" style="height: 60px;">
+                                <!-- Product name-->
+                                <a href="{{ url_for('view_product', prod_id=product['id'], category=product['category']) }}" class="text-decoration-none h5">{{  product['product_name']  }}</a>
+                                <!-- Product price-->
+                                <br>
+
+
+                            </div>
+                        </div>
+                        <!-- Product actions-->
+                        <div class="card-footer pb-4 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center pb-2">
+                                <a>
+                                        {{ product['price'] }}
+                                        {{ product['discount_price'] }}
+                                </a>
+                            </div>
+                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{{ url_for('dodaj_do_koszyka', product_id=product['id'], category=category) }}">Dodaj do koszyka</a></div>
+                        </div>
+
+
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                {% for product in all_products %}
+                {% if product['category'] == category %}
+                    <div class="col mb-5">
+                        <div class="card h-100" style="border-radius: 0 0 20px 20px !important;">
+                            <div>
+                                <a href="{{ url_for('view_product', prod_id=product['id'], category=product['category']) }}"><img class="card-img-top img-fluid" src="{{ product['img_url'] }}" style="height: 250px; object-fit: cover;" /></a>
+                            </div>
+                            <!-- Product details-->
+                            <div class="card-body pt-3 pb-2">
+                                <div class="text-center" style="height: 60px;">
+                                    <!-- Product name-->
+                                    <a href="{{ url_for('view_product', prod_id=product['id'], category=product['category']) }}" class="text-decoration-none h5">{{  product['product_name']  }}</a>
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                            <div class="card-footer pb-4 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center pb-2">
+                                <a>
+                                        {{ product['price'] }}
+                                        {{ product['discount_price'] }}
+                                </a>
+                            </div>
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{{ url_for('dodaj_do_koszyka', product_id=product['id'], category=category) }}">Dodaj do koszyka</a></div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+                {% endfor %}
+            {% endif %}
+
+
+
+
+
+
+        </div>
+    </div>
+</section>
+
+{% endblock main %}

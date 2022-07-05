@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block style %}
+<style type="text/css">
+    body {
+        background-color: #F0EBE3;
+    }
+</style>
+{% endblock style %}
+
+{% block title %}Edytuj dane - Popowiczanka{% endblock title %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block main %}
+
+{% import "bootstrap/wtf.html" as wtf %}
+
+
+
+<div class="container" style="padding-bottom: 80px;">
+    <div class="row px-0 py-3 p-md-5">
+        <div class="col d-flex justify-content-center">
+            <div class="card w-75 shadow p-0 p-md-5 py-3">
+                <div class="card-body">
+                    <h1>Edytuj dane</h1>
+                    <hr>
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            {% for msg in messages %}
+                                <p style="color: red;">{{msg}}</p>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+
+
+
+
+
+
+                <form action="{{ url_for('edytuj_dane') }}" method="POST" enctype="multipart/form-data">
+                    <div class="control-group">
+                      <div class="form-group floating-label-form-group controls">
+                        <label>Imię</label>
+                        {{ form.username(value=user["username"], type="text", class="form-control") }}
+                        <p class="help-block text-danger"></p>
+                      </div>
+                    </div>
+                    <div class="control-group">
+                      <div class="form-group floating-label-form-group controls">
+                        <label>Nazwisko</label>
+                        {{ form.surname(value=user["surname"], type="text", class="form-control") }}
+                        <p class="help-block text-danger"></p>
+                      </div>
+                    </div>
+                    <div class="control-group">
+                      <div class="form-group floating-label-form-group controls">
+                        <label>Adres e-mail</label>
+                        {{ form.email(value=user["email"], type="text", class="form-control") }}
+                        <p class="help-block text-danger"></p>
+                      </div>
+                    </div>
+                    <div class="control-group">
+                      <div class="form-group floating-label-form-group controls">
+                        <label>Numer telefonu</label>
+                        {{ form.phone(value=user["phone"], type="text", class="form-control") }}
+                        <p class="help-block text-danger"></p>
+                      </div>
+                    </div>
+                    <div class="control-group">
+                      <div class="form-group floating-label-form-group controls">
+                        <label>Data urodzenia</label>
+                        {{ form.birthdate(value=user["birthdate"], class="form-control") }}
+                        <p class="help-block text-danger"></p>
+                      </div>
+                    </div>
+                    <div style="padding:15px;">
+                        {{ form.submit(class="btn btn-caro") }}
+                    </div>
+                </form>
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+{% endblock main %}
