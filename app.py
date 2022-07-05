@@ -159,7 +159,7 @@ def index():
         db.session.add(new_category2)
         db.session.add(new_category3)
         db.session.add(new_category4)
-        db.session.commit()
+        # db.session.commit()
 
     return render_template('index.html', posts=posts, current_user=current_user, all_products=Product.query.all())
 
