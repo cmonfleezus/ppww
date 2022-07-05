@@ -14,6 +14,8 @@ import os
 from werkzeug.utils import secure_filename
 
 
+categories = ["Ciasta", "Torty", "Ciasteczka", "Pączki"]
+
 secret_string = str(os.environ.get("SECRET_KEY"))
 
 app = Flask(__name__)
@@ -67,11 +69,6 @@ class User(UserMixin, db.Model):
         self.password = password
         self.birthdate = birthdate
         self.accept_tos = accept_tos
-
-
-class Categories(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    category_name = db.Column(db.String(250))
 
 
 class Product(db.Model):
@@ -142,26 +139,6 @@ def admin_only(f):
 
 @app.route('/')
 def index():
-    if not db.session.query(Categories).first():
-        new_category1 = Categories(
-            category_name="Ciasta",
-        )
-        new_category2 = Categories(
-            category_name="Torty",
-        )
-        new_category3 = Categories(
-            category_name="Ciasteczka",
-        )
-        new_category4 = Categories(
-            category_name="Pączki",
-        )
-        db.session.add(new_category1)
-        db.session.add(new_category2)
-        db.session.add(new_category3)
-        db.session.add(new_category4)
-
-
-
     return render_template('index.html', posts=posts, current_user=current_user, all_products=Product.query.all())
 
 
@@ -467,6 +444,7 @@ def upload_image():
 @app.route('/add-new-product', methods=['GET', 'POST'])
 @admin_only
 def add_new_product():
+    global categories
     if request.method == "POST":
 
         img_url = ""
@@ -505,13 +483,14 @@ def add_new_product():
         flash("Dodano nowy produkt")
 
         return redirect(url_for("products", category="all"))
-    categories = Categories.query.all()
+    categories = categories
     return render_template("add_new_product.html", current_user=current_user, categories=categories)
 
 
 @app.route('/edit_the_product/<int:product_id>', methods=['POST', 'GET'])
 @admin_only
 def edit_the_product(product_id):
+    global categories
     if request.method == 'POST':
 
         img_url = ""
@@ -551,7 +530,7 @@ def edit_the_product(product_id):
         return redirect(url_for("products", category='all'))
     else:
         product_edited = Product.query.filter_by(id=product_id).first()
-        categories = Categories.query.all()
+        categories = categories
         return render_template("edit-the-product.html", current_user=current_user, product_id=product_id,
                                product_edited=product_edited, categories=categories)
 

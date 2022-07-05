@@ -62,7 +62,7 @@
                         <select class="form-select" name="kategoria" aria-label="Default select example" data-validation-required-message="Dodaj kategorię!">
                           <option selected>Dodaj kategorię</option>
                             {% for x in categories %}
-                                <option value="{{ x.category_name }}">{{ x.category_name }}</option>
+                                <option value="{{ x }}">{{ x }}</option>
                             {% endfor %}
                         </select>
                     <p class="help-block text-danger"></p>
