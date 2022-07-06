@@ -1,6 +1,12 @@
 {% extends "base.html" %}
 
-{% block title %}Produkty - Popowiczanka{% endblock title %}
+{% block title %}
+{% if category == "all" %}
+Wszystkie produkty - Popowiczanka
+{% else %}
+{{ category }} - Popowiczanka
+{% endif %}
+{% endblock title %}
 
 {% block main %}
 
@@ -68,7 +74,7 @@
 </div>
 </section>
 
-<div>
+<div class="text-center">
     {% with messages = get_flashed_messages() %}
         {% if messages %}
             {% for msg in messages %}

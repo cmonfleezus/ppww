@@ -15,6 +15,13 @@
             transition: transform .3s;
             display: flex;
         }
+        .ft-logo {
+            padding-left: 48px;
+        }
+
+        .ft-navsupcon {
+            margin-right: 48px;
+        }
 
     </style>
     {% block style %}{% endblock %}
@@ -43,11 +50,15 @@
                 if (window.scrollY > 200) {
                     document.getElementById('nav-img-logo').style.height = '60px';
                     document.getElementById('navbar_top').classList.add('fixed-top');
+                    document.getElementById('nav-img-logo').classList.add('ft-logo');
+                    document.getElementById('navbuttontog').classList.add('ft-navsupcon');
                     navbar_height = document.querySelector('.navbar').offsetHeight;
 				    document.body.style.paddingTop = navbar_height + 50 + 'px';
                 } else {
                     document.getElementById('nav-img-logo').style.height = '110px';
                     document.getElementById('navbar_top').classList.remove('fixed-top');
+                    document.getElementById('nav-img-logo').classList.remove('ft-logo');
+                    document.getElementById('navbuttontog').classList.remove('ft-navsupcon');
                     document.body.style.paddingTop = '0';
                 }
             });

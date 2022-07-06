@@ -1,10 +1,11 @@
 
 <nav id="navbar_top" class="navbar navbar-expand-lg navbar-light bg-light shadow-sm" style="z-index: 1000; padding:0;">
-    <div class="container px-4 px-lg-5">
-        <a class="navbar-brand" style="padding:0;" href="{{  url_for('index')  }}">
+    <div class="container px-0 px-sm-4 px-lg-5">
+
+        <a class="navbar-brand ml-sm-0" style="padding:0; margin-left:-15px;" href="{{  url_for('index')  }}">
             <img id="nav-img-logo" src="/static/img/popowiczankakolor-kopia.png" height="110" alt="">
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        <button class="navbar-toggler" id="navbuttontog" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
                 class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -73,6 +74,7 @@
                     {% endif %}
                 </a>
             </form>
+
         </div>
     </div>
 </nav>

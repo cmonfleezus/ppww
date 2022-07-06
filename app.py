@@ -19,6 +19,7 @@ categories = ["Ciasta", "Torty", "Ciasteczka", "Pączki"]
 
 secret_string = str(os.environ.get("SECRET_KEY"))
 
+
 app = Flask(__name__)
 app.secret_key = secret_string
 Bootstrap(app)
@@ -326,6 +327,7 @@ def koszyk():
                     prod_dict[x] = prod_dict[x] + 1
         else:
             flash('Koszyk jest pusty!')
+            return redirect(url_for('products', category="all"))
     else:
         prod_list = []
         for item in Koszyki.query.filter_by(user_id=current_user.get_id()):
@@ -339,6 +341,7 @@ def koszyk():
                     prod_dict[x] = prod_dict[x] + 1
         else:
             flash('Koszyk jest pusty!')
+            return redirect(url_for('products', category="all"))
     return render_template("koszyk.html", current_user=current_user, all_products=all_products, prod_dict=prod_dict)
 
 
@@ -604,4 +607,4 @@ def lokalizacje():
 
 if __name__ == "__main__":
     db.create_all()  # tworzy db jesli juz nie istnieje, musi byc przed app.run
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000)
