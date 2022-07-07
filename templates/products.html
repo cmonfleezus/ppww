@@ -89,41 +89,7 @@ Wszystkie produkty - Popowiczanka
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
             {% if category == "all" %}
                 {% for product in all_products %}
-                <div class="col mb-5">
-                    <div class="card h-100" style="border-radius: 0 0 20px 20px !important;">
-                        <!-- Product image-->
-                        <div>
-                            <a href="{{ url_for('view_product', prod_id=product['id'], category=product['category']) }}"><img class="card-img-top img-fluid" src="{{ product['img_url'] }}" style="height: 250px; object-fit: cover;" /></a>
-                        </div>
-                        <!-- Product details-->
-                        <div class="card-body pt-3 pb-2">
-                            <div class="text-center" style="height: 60px;">
-                                <!-- Product name-->
-                                <a href="{{ url_for('view_product', prod_id=product['id'], category=product['category']) }}" class="text-decoration-none h5">{{  product['product_name']  }}</a>
-                                <!-- Product price-->
-                                <br>
-
-
-                            </div>
-                        </div>
-                        <!-- Product actions-->
-                        <div class="card-footer pb-4 pt-0 border-top-0 bg-transparent">
-                            <div class="text-center pb-2">
-                                <a>
-                                        {{ product['price'] }}
-                                        {{ product['discount_price'] }}
-                                </a>
-                            </div>
-                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{{ url_for('dodaj_do_koszyka', product_id=product['id'], category=category) }}">Dodaj do koszyka</a></div>
-                        </div>
-
-
-                    </div>
-                </div>
-                {% endfor %}
-            {% else %}
-                {% for product in all_products %}
-                {% if product['category'] == category %}
+                    {% if product["discount_turn_on"] == 0 %}
                     <div class="col mb-5">
                         <div class="card h-100" style="border-radius: 0 0 20px 20px !important;">
                             <div>
@@ -140,14 +106,99 @@ Wszystkie produkty - Popowiczanka
                             <div class="card-footer pb-4 pt-0 border-top-0 bg-transparent">
                             <div class="text-center pb-2">
                                 <a>
-                                        {{ product['price'] }}
-                                        {{ product['discount_price'] }}
+                                        {{ product['price'] }} zł
+
                                 </a>
                             </div>
                                 <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{{ url_for('dodaj_do_koszyka', product_id=product['id'], category=category) }}">Dodaj do koszyka</a></div>
                             </div>
                         </div>
                     </div>
+
+                    {% else %}
+                    <div class="col mb-5">
+                        <div class="card h-100" style="border-radius: 0 0 20px 20px !important;">
+                            <div>
+                                <a href="{{ url_for('view_product', prod_id=product['id'], category=product['category']) }}"><img class="card-img-top img-fluid" src="{{ product['img_url'] }}" style="height: 250px; object-fit: cover;" /></a>
+                            </div>
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <a href="{{ url_for('view_product', prod_id=product['id'], category=product['category']) }}" class="text-decoration-none h5">{{  product['product_name']  }}</a>
+
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                            <div class="card-footer pb-4 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center pb-2">
+                                <a>
+                                    <span class="text-muted text-decoration-line-through">{{ product['price'] }} zł</span>
+                                    {{ product['discount_price'] }} zł
+                                </a>
+                            </div>
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{{ url_for('dodaj_do_koszyka', product_id=product['id'], category=category) }}">Dodaj do koszyka</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            {% else %}
+                {% for product in all_products %}
+                {% if product['category'] == category %}
+                    {% if product["discount_turn_on"] == 0 %}
+                    <div class="col mb-5">
+                        <div class="card h-100" style="border-radius: 0 0 20px 20px !important;">
+                            <div>
+                                <a href="{{ url_for('view_product', prod_id=product['id'], category=product['category']) }}"><img class="card-img-top img-fluid" src="{{ product['img_url'] }}" style="height: 250px; object-fit: cover;" /></a>
+                            </div>
+                            <!-- Product details-->
+                            <div class="card-body pt-3 pb-2">
+                                <div class="text-center" style="height: 60px;">
+                                    <!-- Product name-->
+                                    <a href="{{ url_for('view_product', prod_id=product['id'], category=product['category']) }}" class="text-decoration-none h5">{{  product['product_name']  }}</a>
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                            <div class="card-footer pb-4 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center pb-2">
+                                <a>
+                                        {{ product['price'] }} zł
+
+                                </a>
+                            </div>
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{{ url_for('dodaj_do_koszyka', product_id=product['id'], category=category) }}">Dodaj do koszyka</a></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% else %}
+                    <div class="col mb-5">
+                        <div class="card h-100" style="border-radius: 0 0 20px 20px !important;">
+                            <div>
+                                <a href="{{ url_for('view_product', prod_id=product['id'], category=product['category']) }}"><img class="card-img-top img-fluid" src="{{ product['img_url'] }}" style="height: 250px; object-fit: cover;" /></a>
+                            </div>
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <a href="{{ url_for('view_product', prod_id=product['id'], category=product['category']) }}" class="text-decoration-none h5">{{  product['product_name']  }}</a>
+
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                            <div class="card-footer pb-4 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center pb-2">
+                                <a>
+                                    <span class="text-muted text-decoration-line-through">{{ product['price'] }} zł</span>
+                                    {{ product['discount_price'] }} zł
+                                </a>
+                            </div>
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{{ url_for('dodaj_do_koszyka', product_id=product['id'], category=category) }}">Dodaj do koszyka</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
                 {% endif %}
                 {% endfor %}
             {% endif %}

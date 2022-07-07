@@ -89,6 +89,10 @@ body {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
+.social-hov:hover, .social-hov:focus, .social-hov:active, .open>.dropdown-toggle.social-hov {
+    color: #ffffff !important;
+}
+
 .btn-caro-2 {
     color: #2e2e2e !important;
     background-color: #ffffff !important;

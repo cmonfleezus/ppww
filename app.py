@@ -392,22 +392,28 @@ def usun_z_koszyka(product_id):
 
 
 def allowed_image(filename):
-    if not "." in filename:
-        return False
+    if filename:
+        if not "." in filename:
+            return False
 
-    ext = filename.rsplit(".", 1)[1]
+        ext = filename.rsplit(".", 1)[1]
 
-    if ext.upper() in app.config["ALLOWED_IMAGE_EXTENSIONS"]:
-        return True
+        if ext.upper() in app.config["ALLOWED_IMAGE_EXTENSIONS"]:
+            return True
+        else:
+            return False
     else:
-        return False
+        return True
 
 
 def allowed_image_filesize(filesize):
-    if int(filesize) < app.config["MAX_IMAGE_FILESIZE"]:
-        return True
+    if filesize:
+        if int(filesize) < app.config["MAX_IMAGE_FILESIZE"]:
+            return True
+        else:
+            return False
     else:
-        return False
+        return True
 
 
 @app.route('/upload-image', methods=['GET', 'POST'])
@@ -607,4 +613,4 @@ def lokalizacje():
 
 if __name__ == "__main__":
     db.create_all()  # tworzy db jesli juz nie istnieje, musi byc przed app.run
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=5000, debug=True)
